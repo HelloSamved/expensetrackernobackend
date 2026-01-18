@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpense - Premium Wallet & Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">✨</span>
+                <h1>Xpense</h1>
+            </div>
+            <div class="date-display" id="currentDate">January 18, 2026</div>
+        </header>
+
+        <main>
+            <section class="wallet-card">
+                <div class="wallet-info">
+                    <span class="label">Total Balance</span>
+                    <h2 id="balance">₹0.00</h2>
+                </div>
+                <button class="add-funds-btn" onclick="openModal('walletModal')">
+                    <span class="plus-icon">+</span>
+                </button>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Spent Today</span>
+                    <span class="stat-value" id="todaySpent">₹0.00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Transactions</span>
+                    <span class="stat-value" id="txCount">0</span>
+                </div>
+            </section>
+
+            <section class="actions">
+                <button class="primary-btn" onclick="openModal('expenseModal')">
+                    Add New Expense
+                </button>
+            </section>
+
+            <section class="history">
+                <div class="section-header">
+                    <h3>Recent Transactions</h3>
+                    <button class="text-btn" onclick="clearAllData()">Clear All</button>
+                </div>
+                <div class="transaction-list" id="transactionList">
+                    <!-- Transactions injected here -->
+                    <div class="empty-state">
+                        <p>No transactions yet. Start by adding funds!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Wallet Modal -->
+    <div id="walletModal" class="modal">
+        <div class="modal-content">
+            <h3>Add Funds</h3>
+            <p>Enter the amount to add to your e-wallet.</p>
+            <input type="number" id="walletAmount" placeholder="Amount (e.g. 5000)" min="1">
+            <div class="modal-actions">
+                <button class="secondary-btn" onclick="closeModal('walletModal')">Cancel</button>
+                <button class="primary-btn" onclick="addFunds()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expense Modal -->
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <h3>New Expense</h3>
+            <p>What did you spend on?</p>
+            <form id="expenseForm">
+                <input type="text" id="expenseTitle" placeholder="Title (e.g. Coffee)" required>
+                <input type="number" id="expenseAmount" placeholder="Amount" min="1" required>
+                <select id="expenseCategory">
+                    <option value="Food">Food & Drinks</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" onclick="closeModal('expenseModal')">Cancel</button>
+                    <button type="submit" class="primary-btn">Add Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
